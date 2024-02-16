@@ -30,6 +30,7 @@ namespace PlatfromService.Data
 
         bool IPlatformRepo.SaveChanges()
         {
+            
             return (_context.SaveChanges() >= 0);
         }
     }

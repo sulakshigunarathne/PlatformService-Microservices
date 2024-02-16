@@ -1,13 +1,16 @@
 using PlatfromService.Models;
+
 namespace PlatfromService.Data
 {
     public class PrepDb
     {
         public static void PrepPopulation(IApplicationBuilder app)
         {
-            using( var servicesScope = app.ApplicationServices.CreateScope())
+            using( var serviceScope = app.ApplicationServices.CreateScope())
             {
-                SeedData(servicesScope.ServiceProvider.GetService<AppDBContext>());
+#pragma warning disable CS8604 // Possible null reference argument.
+                SeedData(serviceScope.ServiceProvider.GetService<AppDBContext>());
+#pragma warning restore CS8604 // Possible null reference argument.
             }
         }
 
@@ -16,7 +19,7 @@ namespace PlatfromService.Data
             if(!dbContext.Platforms.Any())
             {
                 Console.WriteLine("--> Seeding data");
-                Console.ReadLine();
+            
                 dbContext.Platforms.AddRange(
                     new Platform() { Name = "Dot Net", Publisher = "Microsoft", Cost = "Free" },
                     new Platform() { Name = "SQL Server Express", Publisher = "Microsoft", Cost = "Free" },

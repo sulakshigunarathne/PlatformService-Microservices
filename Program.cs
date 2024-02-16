@@ -4,24 +4,26 @@ using PlatfromService.Data;
 var builder = WebApplication.CreateBuilder(args);
  
 // Add services to the container.
- 
+ builder.Services.AddDbContext<AppDBContext>(opt =>
+     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+/*
 if(builder.Environment.IsProduction())
 {
-    Console.WriteLine("---> Using SqlServer DB");
+    
     builder.Services.AddDbContext<AppDBContext>(opt =>
         opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
+        
 }
 else
 {
-    Console.WriteLine("---> Using InMemory DB");
     builder.Services.AddDbContext<AppDBContext>(opt => opt.UseInMemoryDatabase("InMem"));
 }
- 
-//builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
+ */
+builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 //builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 //builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
 //builder.Services.AddGrpc();
- 
+
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -48,6 +50,6 @@ app.UseAuthorization();
  
 app.MapControllers();
  
-//PrepDb.PrepPopulation(app, builder.Environment.IsProduction());
+PrepDb.PrepPopulation(app);
  
 app.Run();
