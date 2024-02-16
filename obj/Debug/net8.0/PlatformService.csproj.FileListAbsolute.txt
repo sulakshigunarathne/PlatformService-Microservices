@@ -140,3 +140,4 @@ D:\MicroservicesWithDocker\PlatformService\obj\Debug\net8.0\refint\PlatformServi
 D:\MicroservicesWithDocker\PlatformService\obj\Debug\net8.0\PlatformService.pdb
 D:\MicroservicesWithDocker\PlatformService\obj\Debug\net8.0\PlatformService.genruntimeconfig.cache
 D:\MicroservicesWithDocker\PlatformService\obj\Debug\net8.0\ref\PlatformService.dll
+D:\MicroservicesWithDocker\PlatformService\obj\Debug\net8.0\PlatformService.sourcelink.json
